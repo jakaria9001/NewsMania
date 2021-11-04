@@ -1,51 +1,37 @@
 const mongoose = require('mongoose');
 
-const ComplaintSchema = new mongoose.Schema({
-    user: {
+const NewsSchema = new mongoose.Schema({
+    
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
+    publisher: {
+        type: String,
+        required: true
+    },
+    clicks: {
+        type: Number,
+        default: 0
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    imgUrl: {
+        type: String
+    },
+    addedBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Admin'
     },
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    c_type: {
-        type: String,
-        required: true
-    },
-    c_detail: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: String,
-        required: true
-    },
-    status: {
-        type: String,
-        default: "Registered"
-    },
-    assigned_to: {
-        type: String,
-		default: ""
-    },
-    feedback: {
-        type: String,
-		default: ""
-    },
-    resolved_on: {
-        type: String,
-		default: ""
+    trendRate: {
+        type: Number
     }
-
 });
 
-module.exports = Complaint = mongoose.model('Complaint', ComplaintSchema);
+module.exports = News = mongoose.model('News', NewsSchema);
